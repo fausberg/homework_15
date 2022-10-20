@@ -1,11 +1,8 @@
 package task2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.stream.Stream;
 
-import static java.lang.String.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -32,24 +29,23 @@ public class Main {
             }
         }
 
-        ArrayList<String> strings = new ArrayList<>();
-
-        for(int i = 0; i < 10; i++){
-            strings.add(students.get(i).getName());
-        }
-
-        System.out.println(strings);
-
         System.out.println(students);
 
         Stream<Student> stream = students.stream();
         Stream<Student> stream1 = students.stream();
-        Stream<String> stream2 = strings.stream();
+        Stream<Student> stream3 = students.stream();
 
         System.out.println(stream.filter(x ->x.getName().equalsIgnoreCase("VaNy")).count());
         stream1.filter(x ->x.getName().toLowerCase().startsWith("a".toLowerCase())).distinct().forEach(System.out::println);
         //System.out.println(stream1.filter(x ->x.getName().toLowerCase().startsWith("a".toLowerCase())).count());
         System.out.println();
-        System.out.println(stream2.sorted().findFirst());
+
+        System.out.println(stream3.sorted((o1, o2) -> {
+            if (o1.getName().compareTo(o2.getName()) > 0) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }).findFirst());
     }
 }
